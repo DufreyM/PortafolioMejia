@@ -3,8 +3,8 @@
   color: white;
   text-align: center;
   padding: 4rem 1rem;
-  width: 100%;           /* Asegura ancho completo */
-  box-sizing: border-box; /* Incluye padding en el ancho */
+  width: 100%;           
+  box-sizing: border-box; 
 }
 
 .hero .container {
