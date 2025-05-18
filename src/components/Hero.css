@@ -1,0 +1,42 @@
+.hero {
+  background-color: #007acc;
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+  width: 100%;           /* Asegura ancho completo */
+  box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+.hero .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero a {
+  color: white;
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 6rem 2rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.5rem;
+  }
+}
