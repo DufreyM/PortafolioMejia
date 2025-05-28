@@ -1,0 +1,40 @@
+.skills-section {
+  background-color: #0F0F0F;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.skills-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.skill {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.skill-bar {
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin: 5px 0;
+}
+
+.skill-level {
+  background: linear-gradient(90deg, #00BFFF, #B19CD9);
+  height: 100%;
+  animation: fill 1.5s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

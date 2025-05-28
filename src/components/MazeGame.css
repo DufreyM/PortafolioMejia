@@ -1,0 +1,35 @@
+.maze-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrado vertical */
+  align-items: center;     /* Centrado horizontal */
+  background-color: #f0f0f0;
+}
+
+.maze {
+  display: inline-block;
+}
+.maze-row {
+  display: flex;
+}
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+.cell.wall {
+  background-color: black;
+}
+.cell.player {
+  background-color: royalblue;
+}
+.cell.exit {
+  background-color: limegreen;
+}
+.hint {
+  margin-top: 1rem;
+  font-size: 14px;
+  text-align: center;
+}

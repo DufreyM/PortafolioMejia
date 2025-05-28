@@ -1,12 +1,12 @@
-// components/HeroIntro.jsx
 import './Hero.css';
+import perfil from '../assets/perfil.png'; // Asegúrate de tener esta imagen
 
 const HeroIntro = () => (
   <section className="hero">
-    <div className="container">
-      <h1>Leonardo Mejía</h1>
-      <p>Hola, soy un desarrollador que prefiere el backend antes que el frontend, a veces algo esquizofrénico</p>
-      <p>Una monedita porfavore</p>
+    <div className="hero-container">
+      <img src={perfil} alt="Foto de perfil" className="hero-img" />
+      <h1 className="hero-name">Leonardo Mejía</h1>
+      <p>Soy desarrollador backend con inclinaciones al frontend cuando no queda de otra.</p>
     </div>
   </section>
 );

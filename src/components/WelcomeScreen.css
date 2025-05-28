@@ -1,0 +1,61 @@
+.welcome-screen {
+  height: 100vh;
+  background: linear-gradient(135deg, #ffcc00, #ff4444);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', cursive;
+  animation: fadeIn 1s ease-in;
+}
+
+.welcome-box {
+  text-align: center;
+  color: white;
+  background: #000000dd;
+  padding: 2rem;
+  border-radius: 20px;
+  border: 4px solid white;
+  box-shadow: 0 0 30px #ffcc00;
+  animation: popIn 1s ease-out;
+}
+
+.welcome-title {
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-highlight {
+  font-size: 20px;
+  color: #ffdd00;
+  text-shadow: 2px 2px red;
+  margin-bottom: 2rem;
+}
+
+.continue-btn {
+  font-family: inherit;
+  font-size: 12px;
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px #0077aa;
+  transition: all 0.3s;
+}
+
+.continue-btn:hover {
+  background-color: #0077aa;
+  box-shadow: 0 3px #005577;
+  transform: translateY(2px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
