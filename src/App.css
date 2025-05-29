@@ -1,9 +1,17 @@
+:root {
+  --azul: #6EA4BB;
+  --platino: #E7E7E6;
+  --espacio: #464646;
+  --agridulce: #C04C4B;
+  --champan: #F0DBA5;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Press Start 2P', monospace;
-  background-color: #CCBAA1;
-  color: #fff;
+  background-color: var(--champan);
+  color: var(--platino);
 }
 
 .gameboy-container {
@@ -12,8 +20,8 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: #84ADD7;
-  border: 10px solid #7B675B;
+  background: var(--azul);
+  border: 10px solid var(--espacio);
   border-radius: 30px;
   box-sizing: border-box;
   padding: 2vh 2vw;
@@ -30,16 +38,16 @@ body {
 }
 
 .gameboy-screen {
-  background: #ffdedb;
-  border: 5px inset #3949ab;
+  background: var(--platino);
+  border: 5px inset var(--azul);
   border-radius: 10px;
   width: 100%;
   max-width: 500px;
   height: 60vh;
   overflow-y: auto;
   padding: 1rem;
-  color: #1a1a1a;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+  color: var(--espacio);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .gameboy-controls.side {
@@ -49,8 +57,8 @@ body {
 }
 
 .gameboy-controls button {
-  background: #1a237e;
-  color: #fff;
+  background: var(--espacio);
+  color: var(--platino);
   border: none;
   padding: 1rem;
   border-radius: 50%;
@@ -58,25 +66,25 @@ body {
   height: 60px;
   font-size: 0.75rem;
   cursor: pointer;
-  box-shadow: 0 4px #F1F2F6;
+  box-shadow: 0 4px var(--platino);
   transition: transform 0.1s;
 }
 
 .gameboy-controls button:hover {
-  background: #e02323;
+  background: var(--agridulce);
   transform: scale(1.05);
 }
 
 .gameboy-controls button:active {
   transform: scale(0.95);
-  box-shadow: 0 2px #3a0000;
+  box-shadow: 0 2px #3a0000; /* este lo dejé igual porque es sombra */
 }
 
 .gameboy-footer {
   width: 100%;
   max-width: 900px;
   padding: 1rem;
-  background: #5a0000;
+  background: var(--agridulce);
   border-radius: 10px;
   margin-top: 2vh;
   text-align: center;

@@ -6,7 +6,7 @@ const HeroIntro = () => (
     <div className="hero-container">
       <img src={perfil} alt="Foto de perfil" className="hero-img" />
       <h1 className="hero-name">Leonardo Mejía</h1>
-      <p>Soy desarrollador backend con inclinaciones al frontend cuando no queda de otra.</p>
+      <p>Soy desarrollador backend, aprendiendo go porque me dará de comer ✌️.</p>
     </div>
   </section>
 );

@@ -37,6 +37,7 @@ export default function MazeGame({ onComplete }) {
   }, [position, onComplete]);
 
   return (
+  <div className="maze-container">
     <div className="maze">
       {mazeMap.map((row, y) => (
         <div key={y} className="maze-row">
@@ -49,7 +50,9 @@ export default function MazeGame({ onComplete }) {
           })}
         </div>
       ))}
-      <p className="hint">Usa las flechas del teclado para llegar a la salida (E)</p>
     </div>
-  );
+    <p className="hint">Usa las flechas del teclado para llegar a la salida</p>
+  </div>
+);
+
 }

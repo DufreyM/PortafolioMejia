@@ -1,6 +1,16 @@
+:root {
+  --azul: #6EA4BB;
+  --platino: #E7E7E6;
+  --espacio: #464646;
+  --agridulce: #C04C4B;
+  --champan: #F0DBA5;
+}
+
 .projects-section {
   text-align: center;
   padding: 2rem;
+  background-color: var(--platino);
+  color: var(--espacio);
 }
 
 .carousel {
@@ -12,7 +22,7 @@
 }
 
 .nav-btn {
-  background-color: #333;
+  background-color: var(--azul);
   color: white;
   border: none;
   border-radius: 50%;
@@ -25,7 +35,7 @@
 }
 
 .nav-btn:hover {
-  background-color: #555;
+  background-color: var(--agridulce);
 }
 
 .nav-btn.left {
@@ -38,21 +48,22 @@
 
 .project-card-flip {
   width: 300px;
-  height: 300px; /* Altura igual al ancho para que sea cuadrada */
+  height: 300px; /* Cuadrado */
   perspective: 1000px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
-  border: 5px solid; /* Borde visible */
-  animation: borderColorChange 5s infinite linear; /* Animación del borde */
-  border-radius: 1rem; /* Puedes quitar esto si no quieres esquinas redondeadas */
+  border: 5px solid; /* Borde animado */
+  animation: borderColorChange 5s infinite linear;
+  border-radius: 1rem;
 }
 
 @keyframes borderColorChange {
-  0% { border-color: #f48fb1; }
-  25% { border-color: #ffe0b2; }
-  50% { border-color: #ffccbc; }
-  75% { border-color: #b2ebf2; }
+  /* 🚨 conservadas tal cual tus tonalidades originales */
+  0%   { border-color: #f48fb1; }
+  25%  { border-color: #ffe0b2; }
+  50%  { border-color: #ffccbc; }
+  75%  { border-color: #b2ebf2; }
   100% { border-color: #f8bbd0; }
 }
 
@@ -69,7 +80,7 @@
   align-items: center;
   padding: 1.5rem;
   transition: transform 0.6s;
-  border-radius: inherit; /* Hereda borde redondeado del contenedor */
+  border-radius: inherit;
 }
 
 .front {
@@ -78,17 +89,17 @@
 
 .back {
   transform: rotateY(180deg);
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: var(--champan);
+  color: var(--espacio);
   font-size: 1.2rem;
-}
-
-.project-card-flip {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
 }
 
 .project-card-flip.flipped {
   transform: rotateY(180deg);
+}
+
+a {
+  color: var(--agridulce);
+  text-decoration: none;
+  font-weight: bold;
 }

@@ -1,52 +1,65 @@
+:root {
+  --azul: #6EA4BB;
+  --platino: #E7E7E6;
+  --espacio: #464646;
+  --agridulce: #C04C4B;
+  --champan: #F0DBA5;
+}
+
 .welcome-screen {
   height: 100vh;
-  background: linear-gradient(135deg, #ffcc00, #ff4444);
+  background: linear-gradient(135deg, #6EA4BB, #C04C4B); /* Azul + Agridulce */
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Press Start 2P', cursive;
   animation: fadeIn 1s ease-in;
+  position: relative; /* <- Esto es clave para que el contenido se apile correctamente */
+  overflow: hidden;
 }
 
 .welcome-box {
+  position: relative;
   text-align: center;
-  color: white;
-  background: #000000dd;
+  color: #E7E7E6;
+  background: rgba(70, 70, 70, 0.9); /* Espacio exterior transparente */
   padding: 2rem;
   border-radius: 20px;
-  border: 4px solid white;
-  box-shadow: 0 0 30px #ffcc00;
+  border: 4px solid #F0DBA5; /* Champán */
+  box-shadow: 0 0 30px #F0DBA5;
   animation: popIn 1s ease-out;
 }
+
 
 .welcome-title {
   font-size: 18px;
   margin-bottom: 0.5rem;
+  color: var(--champan);
 }
 
 .welcome-highlight {
   font-size: 20px;
-  color: #ffdd00;
-  text-shadow: 2px 2px red;
+  color: var(--agridulce);
+  text-shadow: 2px 2px var(--espacio);
   margin-bottom: 2rem;
 }
 
 .continue-btn {
   font-family: inherit;
   font-size: 12px;
-  background-color: #00aaff;
+  background-color: var(--azul);
   color: white;
   border: none;
   padding: 1rem 2rem;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 5px #0077aa;
+  box-shadow: 0 5px #3f7a90;
   transition: all 0.3s;
 }
 
 .continue-btn:hover {
-  background-color: #0077aa;
-  box-shadow: 0 3px #005577;
+  background-color: #5889a1;
+  box-shadow: 0 3px #3f7a90;
   transform: translateY(2px);
 }
 
@@ -58,4 +71,24 @@
 @keyframes popIn {
   0% { transform: scale(0.7); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+.welcome-screen {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-box {
+  position: relative;
+  z-index: 1;
 }
