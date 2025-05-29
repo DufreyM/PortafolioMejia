@@ -1,5 +1,5 @@
 import './Hero.css';
-import perfil from '../assets/perfil.png'; // Asegúrate de tener esta imagen
+import perfil from '../assets/foto.jpg'; 
 
 const HeroIntro = () => (
   <section className="hero">

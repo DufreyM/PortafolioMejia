@@ -1,10 +1,19 @@
 const ResumeViewer = () => (
-  <section className="resume-section" style={{ textAlign: 'center', padding: '2rem', backgroundColor: '#f0f0f0' }}>
-    <h2>Mi Currículum</h2>
-    <object data="/CV.pdf" type="application/pdf" width="80%" height="600px">
-      <p>No se pudo mostrar el CV. <a href="/cv.pdf" download>Descargar PDF</a></p>
+  <div className="resume-container">
+    <h2 className="resume-title">📄 Mi Currículum</h2>
+    <object
+      data="/CV.pdf"
+      type="application/pdf"
+      className="resume-pdf"
+    >
+      <div className="resume-fallback">
+        <p>No se pudo mostrar el CV.</p>
+        <a className="resume-download-button" href="/CV.pdf" download>
+          Descargar PDF
+        </a>
+      </div>
     </object>
-  </section>
+  </div>
 );
 
 export default ResumeViewer;

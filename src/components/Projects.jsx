@@ -5,13 +5,13 @@ const projects = [
   {
     title: "Introducción a React (CDN)",
     description: "Uso básico de React sin herramientas de build: componentes, JSX, useState y props.",
-    technologies: ["React", "Babel", "CDN"],
+    technologies: ["React", "CDN", "HTML"],
     link: "https://introducci-n-react.vercel.app/",
   },
   {
     title: "E-Commerce Web",
     description: "Simula una tienda online con carrito, productos, descuentos, favoritos y límites.",
-    technologies: ["React", "JavaScript", "CSS"],
+    technologies: ["React", "JavaScript", "CSS", "Node.js", "GitHub"],
     link: "https://ecommerceweb-azure.vercel.app/",
   },
   {

@@ -48,24 +48,33 @@
 
 .project-card-flip {
   width: 300px;
-  height: 300px; /* Cuadrado */
+  height: 300px;
   perspective: 1000px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
-  border: 5px solid; /* Borde animado */
-  animation: borderColorChange 5s infinite linear;
+  border: 5px solid;
   border-radius: 1rem;
+  animation: borderAndBackgroundColorChange 5s infinite linear;
 }
 
+
 @keyframes borderColorChange {
-  /* 🚨 conservadas tal cual tus tonalidades originales */
   0%   { border-color: #f48fb1; }
   25%  { border-color: #ffe0b2; }
   50%  { border-color: #ffccbc; }
   75%  { border-color: #b2ebf2; }
   100% { border-color: #f8bbd0; }
 }
+
+@keyframes backFaceColorChange {
+  0%   { background-color: #f48fb1; }
+  25%  { background-color: #ffe0b2; }
+  50%  { background-color: #ffccbc; }
+  75%  { background-color: #b2ebf2; }
+  100% { background-color: #f8bbd0; }
+}
+
 
 .card-face {
   width: 100%;
@@ -89,10 +98,19 @@
 
 .back {
   transform: rotateY(180deg);
-  background-color: var(--champan);
   color: var(--espacio);
   font-size: 1.2rem;
+  animation: backFaceColorChange 5s infinite linear;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: inherit;
 }
+
+
 
 .project-card-flip.flipped {
   transform: rotateY(180deg);

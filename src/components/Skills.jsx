@@ -1,13 +1,13 @@
 import './Skills.css';
 
 const skills = [
-  { name: "HTML", level: 95 },
-  { name: "CSS", level: 90 },
-  { name: "JavaScript", level: 85 },
-  { name: "React", level: 80 },
-  { name: "APIs", level: 75 },
-  { name: "Kotlin", level: 70 },
-  { name: "Jetpack Compose", level: 70 }
+  { name: "Java", level: 60 },
+  { name: "GO", level: 80 },
+  { name: "Python", level: 80 },
+  { name: "Javascript", level: 40 },
+  { name: "Spring Boot", level: 75 },
+  { name: "Docker/Kubernets", level: 35 },
+  { name: "CSS", level: 70 }
 ];
 
 const Skills = () => (

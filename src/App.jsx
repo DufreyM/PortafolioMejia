@@ -51,8 +51,8 @@ if (mazeCompleted && !showWelcome) {
     <div className="gameboy-container">
       <div className="main-section">
         <div className="gameboy-controls side left">
-          <button onClick={() => { setScreen('home'); triggerEmoji(); }}>A</button>
-          <button onClick={() => { setScreen('projects'); triggerEmoji(); }}>B</button>
+          <button onClick={() => { setScreen('home'); triggerEmoji(); }}>Intro</button>
+          <button onClick={() => { setScreen('projects'); triggerEmoji(); }}>Projects</button>
         </div>
 
         <div className="gameboy-screen">
@@ -61,8 +61,8 @@ if (mazeCompleted && !showWelcome) {
         </div>
 
         <div className="gameboy-controls side right">
-          <button onClick={() => { setScreen('skills'); triggerEmoji(); }}>Start</button>
-          <button onClick={() => { setScreen('resume'); triggerEmoji(); }}>Select</button>
+          <button onClick={() => { setScreen('skills'); triggerEmoji(); }}>Skills</button>
+          <button onClick={() => { setScreen('resume'); triggerEmoji(); }}>Resume</button>
         </div>
       </div>
 
