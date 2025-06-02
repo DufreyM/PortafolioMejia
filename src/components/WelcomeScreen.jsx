@@ -4,6 +4,7 @@ import './WelcomeScreen.css';
 
 export default function WelcomeScreen({ onContinue }) {
   const [currentPokemon, setCurrentPokemon] = useState(pokemons[0]);
+  const [avalanche, setAvalanche] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -15,6 +16,13 @@ export default function WelcomeScreen({ onContinue }) {
     }, 7000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleContinue = () => {
+    setAvalanche(true);
+    setTimeout(() => {
+      onContinue();
+    }, 2500); // espera a que caigan los gifs
+  };
 
   return (
     <div className="welcome-screen">
@@ -28,10 +36,36 @@ export default function WelcomeScreen({ onContinue }) {
           />
         ))}
       </div>
+
+      {/* Avalanche effect */}
+      {avalanche && (
+        <div className="gif-avalanche">
+          {Array.from({ length: 50 }).map((_, i) => {
+            const p = pokemons[Math.floor(Math.random() * pokemons.length)];
+            const left = Math.random() * 100;
+            const delay = Math.random() * 2;
+            const duration = 1.5 + Math.random();
+            return (
+              <img
+                key={i}
+                src={p.gif}
+                className="avalanche-gif"
+                style={{
+                  left: `${left}%`,
+                  animationDelay: `${delay}s`,
+                  animationDuration: `${duration}s`,
+                }}
+                alt="falling-pokemon"
+              />
+            );
+          })}
+        </div>
+      )}
+
       <div className="welcome-box">
         <h1 className="welcome-title">¡Bienvenido a</h1>
         <h1 className="welcome-highlight">Dufrey Portafolio!</h1>
-        <button className="continue-btn" onClick={onContinue}>
+        <button className="continue-btn" onClick={handleContinue}>
           Empezar Aventura
         </button>
       </div>

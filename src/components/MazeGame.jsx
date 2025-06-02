@@ -73,21 +73,28 @@ export default function MazeGame({ onComplete }) {
   }, [position]);
 
   return (
-    <div className="maze-container">
-      <div className="maze">
-        {mazeMap.map((row, y) => (
-          <div key={y} className="maze-row">
-            {row.map((cell, x) => {
-              let className = 'cell';
-              if (cell === '#') className += ' wall';
-              if (x === position.x && y === position.y) className += ' player';
-              if (cell === 'E') className += ' exit';
-              return <div key={x} className={className}></div>;
-            })}
-          </div>
-        ))}
-      </div>
-      <p className="hint">Usa las flechas del teclado o desliza en pantalla</p>
+  <div className="maze-container">
+    <div className="maze">
+      {mazeMap.map((row, y) => (
+        <div key={y} className="maze-row">
+          {row.map((cell, x) => {
+            const isPlayer = x === position.x && y === position.y;
+            return (
+              <div key={x} className={`cell ${cell === '#' ? 'wall' : ''}`}>
+                {isPlayer && (
+                  <img src="/pikachu.gif" alt="Pikachu" className="sprite pikachu" />
+                )}
+                {cell === 'E' && !isPlayer && (
+                  <img src="/pokeball.gif" alt="Pokeball" className="sprite pokeball" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))}
     </div>
-  );
+    <p className="hint">Usa las flechas del teclado o desliza en pantalla</p>
+  </div>
+);
+
 }

@@ -2,27 +2,27 @@ const pokemons = [
   {
     name: 'darkrai',
     gif: '/darkrai.gif',
-    colors: ['#1E1B2E', '#4E4B6C', '#D72638'],
+    colors: ['#2A293D', '#666683', '#B9424B'],
   },
   {
-    name: 'charizard',
+    name: 'charizard',  // lo dejo con los tonos naranjas y rojos atenuados
     gif: '/charizard.gif',
-    colors: ['#FF6A00', '#FFD700', '#B22222'],
+    colors: ['#CC5600', '#C97A00', '#8B1A1A'], // naranjas y rojos cálidos
   },
   {
     name: 'pikachu',
     gif: '/pikachu.gif',
-    colors: ['#FFEB3B', '#FBC02D', '#FF5252'],
+    colors: ['#F2E8B8', '#E1D7A1', '#D9A69B'], // amarillo suave y crema cálida
   },
   {
     name: 'snorlax',
     gif: '/snorlax.gif',
-    colors: ['#2E5266', '#6E8898', '#C9D6DF'],
+    colors: ['#254455', '#597481', '#AAB9C1'],
   },
   {
     name: 'venusaur',
     gif: '/venusaur.gif',
-    colors: ['#4CAF50', '#81C784', '#E57373'],
+    colors: ['#3D7B3D', '#71A371', '#B86F6F'],
   },
 ];
 

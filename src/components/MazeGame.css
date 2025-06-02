@@ -77,3 +77,51 @@ body {
     box-shadow: 0 0 15px var(--agridulce);
   }
 }
+.maze-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #F0DBA5, #C04C4B);
+  animation: backgroundCycle 10s infinite alternate ease-in-out;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+@keyframes backgroundCycle {
+  0% { background: linear-gradient(120deg, #F0DBA5, #C04C4B); }
+  50% { background: linear-gradient(120deg, #6EA4BB, #E7E7E6); }
+  100% { background: linear-gradient(120deg, #C04C4B, #6EA4BB); }
+}
+
+.cell {
+  position: relative;
+  width: 5vw;
+  height: 5vw;
+  max-width: 50px;
+  max-height: 50px;
+  margin: 1px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--platino);
+}
+
+.sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pikachu {
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.pokeball {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
