@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeroIntro from './components/HeroIntro';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
@@ -11,17 +11,42 @@ import './App.css';
 
 function App() {
   const [screen, setScreen] = useState('home');
-  const [emoji, setEmoji] = useState(null);
   const [mazeCompleted, setMazeCompleted] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [fallingPikachus, setFallingPikachus] = useState([]);
 
+  const pokemonGifs = [
+    '/pikachu.gif',
+    '/darkrai.gif',
+    '/charizard.gif',
+    '/venusaur.gif',
+    '/snorlax.gif'
+  ];
 
-  const triggerEmoji = () => {
-    const emojis = ['🎉', '🔥', '💻', '🎮', '🚀'];
-    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-    setEmoji(randomEmoji);
-    setTimeout(() => setEmoji(null), 1000);
+  const triggerPokemon = () => {
+    const id = Date.now();
+    const randomGif = pokemonGifs[Math.floor(Math.random() * pokemonGifs.length)];
+    const newPokemon = {
+      id,
+      left: Math.random() * 90 + '%',
+      gif: randomGif
+    };
+
+    setFallingPikachus(prev => [...prev, newPokemon]);
+
+    setTimeout(() => {
+      setFallingPikachus(prev => prev.filter(p => p.id !== id));
+    }, 2500);
   };
+
+  // 👇 Esto hace que cada cierto tiempo caiga un Pokémon automáticamente
+  useEffect(() => {
+    const interval = setInterval(() => {
+      triggerPokemon();
+    }, 5000 + Math.random() * 5000); // entre 5 y 10 segundos
+
+    return () => clearInterval(interval); // Limpieza al desmontar
+  }, []);
 
   const renderScreen = () => {
     switch (screen) {
@@ -39,30 +64,38 @@ function App() {
   };
 
   if (!mazeCompleted) {
-  return <MazeGame onComplete={() => setMazeCompleted(true)} />;
-}
+    return <MazeGame onComplete={() => setMazeCompleted(true)} />;
+  }
 
-if (mazeCompleted && !showWelcome) {
-  return <WelcomeScreen onContinue={() => setShowWelcome(true)} />;
-}
-
+  if (mazeCompleted && !showWelcome) {
+    return <WelcomeScreen onContinue={() => setShowWelcome(true)} />;
+  }
 
   return (
     <div className="gameboy-container">
+      <div className="particles" />
       <div className="main-section">
         <div className="gameboy-controls side left">
-          <button onClick={() => { setScreen('home'); triggerEmoji(); }}>Intro</button>
-          <button onClick={() => { setScreen('projects'); triggerEmoji(); }}>Projects</button>
+          <button onClick={() => { setScreen('home'); triggerPokemon(); }}>Intro</button>
+          <button onClick={() => { setScreen('projects'); triggerPokemon(); }}>Projects</button>
         </div>
 
         <div className="gameboy-screen">
           {renderScreen()}
-          {emoji && <div className="falling-emoji">{emoji}</div>}
+          {fallingPikachus.map(p => (
+            <img
+              key={p.id}
+              src={p.gif}
+              className="falling-pikachu"
+              style={{ left: p.left }}
+              alt="Pokemon"
+            />
+          ))}
         </div>
 
         <div className="gameboy-controls side right">
-          <button onClick={() => { setScreen('skills'); triggerEmoji(); }}>Skills</button>
-          <button onClick={() => { setScreen('resume'); triggerEmoji(); }}>Resume</button>
+          <button onClick={() => { setScreen('skills'); triggerPokemon(); }}>Skills</button>
+          <button onClick={() => { setScreen('resume'); triggerPokemon(); }}>Resume</button>
         </div>
       </div>
 

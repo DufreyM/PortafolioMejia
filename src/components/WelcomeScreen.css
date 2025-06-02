@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
   --azul: #6EA4BB;
   --platino: #E7E7E6;
@@ -6,44 +8,87 @@
   --champan: #F0DBA5;
 }
 
+/* FONDO con animación pulsante */
 .welcome-screen {
   height: 100vh;
-  background: linear-gradient(135deg, #6EA4BB, #C04C4B); /* Azul + Agridulce */
+  background: linear-gradient(135deg, #6EA4BB, #C04C4B);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Press Start 2P', cursive;
-  animation: fadeIn 1s ease-in;
-  position: relative; /* <- Esto es clave para que el contenido se apile correctamente */
+  animation: backgroundPulse 10s infinite alternate ease-in-out;
+  position: relative;
   overflow: hidden;
 }
 
+@keyframes backgroundPulse {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    background-position: 100% 50%;
+    filter: hue-rotate(20deg);
+  }
+}
+
+/* CAJA DE BIENVENIDA */
 .welcome-box {
   position: relative;
   text-align: center;
-  color: #E7E7E6;
-  background: rgba(70, 70, 70, 0.9); /* Espacio exterior transparente */
+  color: var(--platino);
+  background: rgba(70, 70, 70, 0.9);
   padding: 2rem;
   border-radius: 20px;
-  border: 4px solid #F0DBA5; /* Champán */
-  box-shadow: 0 0 30px #F0DBA5;
-  animation: popIn 1s ease-out;
+  border: 4px solid var(--champan);
+  box-shadow: 0 0 40px var(--champan), 0 0 10px #fff;
+  animation: boxFloat 3s ease-in-out infinite alternate, popIn 1.2s ease-out;
+  z-index: 1;
 }
 
+/* Flotación sutil */
+@keyframes boxFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-10px) rotate(0.5deg);
+  }
+}
 
+/* Animación de entrada */
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* TEXTO */
 .welcome-title {
   font-size: 18px;
   margin-bottom: 0.5rem;
   color: var(--champan);
+  animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 5px var(--champan); }
+  to { text-shadow: 0 0 20px var(--champan), 0 0 10px #fff; }
 }
 
 .welcome-highlight {
   font-size: 20px;
   color: var(--agridulce);
-  text-shadow: 2px 2px var(--espacio);
+  text-shadow: 2px 2px var(--espacio), 0 0 15px var(--agridulce);
   margin-bottom: 2rem;
+  animation: pulseHighlight 1.5s infinite ease-in-out alternate;
 }
 
+@keyframes pulseHighlight {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* BOTÓN */
 .continue-btn {
   font-family: inherit;
   font-size: 12px;
@@ -53,32 +98,28 @@
   padding: 1rem 2rem;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 5px #3f7a90;
+  box-shadow: 0 5px #3f7a90, 0 0 10px var(--azul);
   transition: all 0.3s;
+  animation: neonPulse 2s infinite ease-in-out;
 }
 
 .continue-btn:hover {
   background-color: #5889a1;
-  box-shadow: 0 3px #3f7a90;
+  box-shadow: 0 3px #3f7a90, 0 0 20px var(--azul);
   transform: translateY(2px);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 10px var(--azul), 0 0 20px var(--azul);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--azul), 0 0 30px #fff;
+  }
 }
 
-@keyframes popIn {
-  0% { transform: scale(0.7); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.welcome-screen {
-  position: relative;
-  z-index: 0;
-  overflow: hidden;
-}
-
+/* PARTICLES POSITIONING */
+#welcome-screen,
 #tsparticles {
   position: absolute;
   top: 0;
@@ -87,8 +128,48 @@
   width: 100%;
   height: 100%;
 }
+:root {
+  --color1: #6EA4BB;
+  --color2: #C04C4B;
+  --color3: #F0DBA5;
+}
 
-.welcome-box {
-  position: relative;
-  z-index: 1;
+.welcome-screen {
+  background: linear-gradient(135deg, var(--color1), var(--color2));
+  transition: background 1s ease-in-out;
+}
+
+/* gifs flotando */
+.pokemon-gifs {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-gif {
+  position: absolute;
+  width: 80px;
+  opacity: 0.15;
+  animation: floatAnim 20s linear infinite;
+}
+
+.floating-gif:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.floating-gif:nth-child(2) { top: 60%; left: 10%; animation-delay: 5s; }
+.floating-gif:nth-child(3) { top: 30%; left: 80%; animation-delay: 10s; }
+.floating-gif:nth-child(4) { top: 70%; left: 60%; animation-delay: 15s; }
+.floating-gif:nth-child(5) { top: 20%; left: 50%; animation-delay: 2s; }
+
+.floating-gif.active {
+  opacity: 0.8;
+  width: 140px;
+  transition: all 1s ease;
+  z-index: 2;
+}
+
+@keyframes floatAnim {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
