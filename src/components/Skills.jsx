@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Skills.css';
 
 const skills = [
@@ -13,9 +13,19 @@ const skills = [
 
 const Skills = () => {
   const [index, setIndex] = useState(0);
-  const next = () => setIndex((index + 1) % skills.length);
-  const prev = () => setIndex((index - 1 + skills.length) % skills.length);
+  const next = () => setIndex((prev) => (prev + 1) % skills.length);
+  const prev = () => setIndex((prev) => (prev - 1 + skills.length) % skills.length);
   const skill = skills[index];
+
+  // ⌨️ Soporte para teclas de flechas
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <section className="skills-carousel">

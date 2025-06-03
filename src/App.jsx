@@ -14,13 +14,19 @@ function App() {
   const [mazeCompleted, setMazeCompleted] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [fallingPikachus, setFallingPikachus] = useState([]);
+  const [theme, setTheme] = useState('light');
 
   const pokemonGifs = [
     '/pikachu.gif',
     '/darkrai.gif',
     '/charizard.gif',
     '/venusaur.gif',
-    '/snorlax.gif'
+    '/snorlax.gif', 
+    '/mew.gif',
+    '/mew2.gif',
+    '/psyduck.gif',
+    '/lugia.gif',
+    '/blastoise.gif',
   ];
 
   const triggerPokemon = () => {
@@ -39,14 +45,27 @@ function App() {
     }, 2500);
   };
 
-  // 👇 Esto hace que cada cierto tiempo caiga un Pokémon automáticamente
   useEffect(() => {
     const interval = setInterval(() => {
       triggerPokemon();
-    }, 5000 + Math.random() * 5000); // entre 5 y 10 segundos
+    }, 5000 + Math.random() * 5000);
 
-    return () => clearInterval(interval); // Limpieza al desmontar
+    return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) setTheme(savedTheme);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', theme === 'dark');
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   const renderScreen = () => {
     switch (screen) {
@@ -73,6 +92,13 @@ function App() {
 
   return (
     <div className="gameboy-container">
+      <button 
+        onClick={toggleTheme}
+        className="theme-toggle"
+      >
+        {theme === 'light' ? '🌙 Modo Oscuro' : '☀️ Modo Claro'}
+      </button>
+
       <div className="particles" />
       <div className="main-section">
         <div className="gameboy-controls side left">
@@ -95,7 +121,7 @@ function App() {
 
         <div className="gameboy-controls side right">
           <button onClick={() => { setScreen('skills'); triggerPokemon(); }}>Skills</button>
-          <button onClick={() => { setScreen('resume'); triggerPokemon(); }}>Resume</button>
+          <button onClick={() => { setScreen('resume'); triggerPokemon(); }}>CV</button>
         </div>
       </div>
 

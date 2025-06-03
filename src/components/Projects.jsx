@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Projects.css';
 
 const projects = [
@@ -35,6 +35,20 @@ const Projects = () => {
     setFlipped(false);
     setIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
+
+  // ⌨️ Manejo de flechas del teclado
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <section className="projects-section">

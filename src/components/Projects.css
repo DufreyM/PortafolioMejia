@@ -4,13 +4,44 @@
   --espacio: #464646;
   --agridulce: #C04C4B;
   --champan: #F0DBA5;
+
+  /* Variables adicionales para proyectos */
+  --projects-bg: var(--platino);
+  --projects-text: var(--espacio);
+  --card-bg-front: white;
+  --card-text-front: #222;
+  --card-shadow: rgba(0, 0, 0, 0.15);
+  --link-color: var(--agridulce);
+  --nav-btn-bg: var(--azul);
+  --nav-btn-hover-bg: var(--agridulce);
+  --card-border-animation-colors: #f48fb1, #ffe0b2, #ffccbc, #b2ebf2, #f8bbd0;
 }
 
+body.dark-mode {
+  --projects-bg: #222831;
+  --projects-text: #eeeeee;
+  --card-bg-front: #393e46;
+  --card-text-front: #eeeeee;
+  --card-shadow: rgba(255, 255, 255, 0.1);
+  --link-color: #ffd369;
+  --nav-btn-bg: #00adb5;
+  --nav-btn-hover-bg: #ff5722;
+
+  /* Ajusta animación de bordes con colores más oscuros */
+  --card-border-animation-colors: #ff6f91, #fbc7a4, #f6d186, #84d2f6, #d3a4f9;
+}
+
+/* Sección proyectos */
 .projects-section {
   text-align: center;
-  padding: 2rem;
-  background-color: var(--platino);
-  color: var(--espacio);
+  padding: 2.5rem 3rem;
+  background-color: var(--projects-bg);
+  color: var(--projects-text);
+}
+
+.projects-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .carousel {
@@ -18,11 +49,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .nav-btn {
-  background-color: var(--azul);
+  background-color: var(--nav-btn-bg);
   color: white;
   border: none;
   border-radius: 50%;
@@ -32,40 +65,42 @@
   cursor: pointer;
   z-index: 2;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-btn:hover {
-  background-color: var(--agridulce);
-}
-
-.nav-btn.left {
-  margin-right: 1rem;
-}
-
-.nav-btn.right {
-  margin-left: 1rem;
+  background-color: var(--nav-btn-hover-bg);
 }
 
 .project-card-flip {
-  width: 300px;
-  height: 300px;
+  width: 340px;
+  height: 360px;
   perspective: 1000px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
   border: 5px solid;
   border-radius: 1rem;
-  animation: borderAndBackgroundColorChange 5s infinite linear;
+  animation: borderColorChange 5s infinite linear;
+  flex-shrink: 0;
 }
 
-
+/* Animación de cambio de color de borde usando variables */
 @keyframes borderColorChange {
-  0%   { border-color: #f48fb1; }
-  25%  { border-color: #ffe0b2; }
-  50%  { border-color: #ffccbc; }
-  75%  { border-color: #b2ebf2; }
-  100% { border-color: #f8bbd0; }
+  0%   { border-color: var(--card-border-color-0, #f48fb1); }
+  25%  { border-color: var(--card-border-color-1, #ffe0b2); }
+  50%  { border-color: var(--card-border-color-2, #ffccbc); }
+  75%  { border-color: var(--card-border-color-3, #b2ebf2); }
+  100% { border-color: var(--card-border-color-4, #f8bbd0); }
 }
+
+/* Como CSS no soporta directamente variables en keyframes, definimos dinámicamente en JS:
+   Pero aquí pongo colores fijos para que funcione sin JS. 
+*/
+
+/* Como alternativa: Puedes mantener la animación con colores fijos o crear varias animaciones en modo oscuro y claro. */
 
 @keyframes backFaceColorChange {
   0%   { background-color: #f48fb1; }
@@ -75,21 +110,31 @@
   100% { background-color: #f8bbd0; }
 }
 
-
 .card-face {
   width: 100%;
   height: 100%;
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  background: var(--card-bg-front);
+  box-shadow: 0 4px 20px var(--card-shadow);
   position: absolute;
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
-  transition: transform 0.6s;
+  padding: 2rem;
   border-radius: inherit;
+  color: var(--card-text-front);
+}
+
+.card-face h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.card-face p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
 }
 
 .front {
@@ -98,26 +143,47 @@
 
 .back {
   transform: rotateY(180deg);
-  color: var(--espacio);
-  font-size: 1.2rem;
   animation: backFaceColorChange 5s infinite linear;
-  backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-  border-radius: inherit;
 }
-
-
 
 .project-card-flip.flipped {
   transform: rotateY(180deg);
 }
 
 a {
-  color: var(--agridulce);
+  color: var(--link-color);
   text-decoration: none;
   font-weight: bold;
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+  .carousel {
+    flex-direction: column;
+  }
+
+  .nav-btn {
+    position: relative;
+    margin: 0.5rem 0;
+  }
+
+  .project-card-flip {
+    width: 90vw;
+    height: auto;
+  }
+
+  .card-face {
+    padding: 1.2rem;
+  }
+
+  .card-face h3 {
+    font-size: 1.2rem;
+  }
+
+  .card-face p,
+  .back {
+    font-size: 0.95rem;
+  }
 }

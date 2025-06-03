@@ -12,6 +12,7 @@ body {
   font-family: 'Press Start 2P', monospace;
   background-color: var(--champan);
   color: var(--platino);
+  overflow: hidden; /* Evita scroll en body */
 }
 
 .gameboy-container {
@@ -42,9 +43,9 @@ body {
   border: 5px inset var(--azul);
   border-radius: 10px;
   width: 100%;
-  max-width: 500px;
-  height: auto;
-  overflow-y: auto;
+  max-width: 800px;
+  height: 80vh; /* altura fija para mostrar bien el PDF */
+  overflow-y: hidden;
   padding: 1rem;
   color: var(--espacio);
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
@@ -77,7 +78,7 @@ body {
 
 .gameboy-controls button:active {
   transform: scale(0.95);
-  box-shadow: 0 2px #3a0000; /* este lo dejé igual porque es sombra */
+  box-shadow: 0 2px #3a0000;
 }
 
 .gameboy-footer {
@@ -109,7 +110,7 @@ body {
   }
 
   .gameboy-screen {
-    height: 50vh;
+    height: 80vh; /* mantener altura fija en móvil */
     max-width: 90vw;
   }
 }
@@ -137,49 +138,8 @@ body {
     opacity: 0;
   }
 }
-.resume-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
-.resume-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--espacio);
-}
-
-.resume-pdf {
-  width: 100%;
-  height: 80vh;
-  border: none;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
-}
-
-.resume-fallback {
-  padding: 1rem;
-  text-align: center;
-  color: var(--espacio);
-}
-
-.resume-download-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--espacio);
-  color: var(--platino);
-  text-decoration: none;
-  border-radius: 0.3rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.resume-download-button:hover {
-  background-color: var(--agridulce);
-}
+/* Background pikachu y animaciones */
 body::before {
   content: '';
   position: fixed;
@@ -187,14 +147,14 @@ body::before {
   left: 0;
   width: 200%;
   height: 100%;
-  background-image: url('pikachu.gif'); /* Cambia esto por la ruta correcta */
+  background-image: url('pikachu.gif');
   background-repeat: repeat;
   background-size: 150px auto;
   z-index: -1;
   opacity: 0.3;
   animation: pikachu-scroll 20s linear infinite;
   pointer-events: none;
-  transform: rotateZ(-2deg) scale(1.1); /* toque estilizado diagonal */
+  transform: rotateZ(-2deg) scale(1.1);
 }
 
 @keyframes pikachu-scroll {
@@ -205,6 +165,7 @@ body::before {
     transform: translateX(-50%) rotateZ(-2deg) scale(1.1);
   }
 }
+
 .falling-pikachu {
   position: absolute;
   top: 0;
@@ -224,10 +185,11 @@ body::before {
     opacity: 1;
   }
   100% {
-    transform: translateY(85vh); /* ajusta según el tamaño del footer */
+    transform: translateY(85vh);
     opacity: 0;
   }
 }
+
 .particles {
   position: absolute;
   top: 0;
@@ -260,4 +222,119 @@ body::before {
   100% {
     transform: translate(-50px, -50px);
   }
+}
+
+/* Corrección para el PDF - no se aplasta */
+.resume-container {
+  flex: 1;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-sizing: border-box;
+  color: var(--espacio);
+}
+
+.resume-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--espacio);
+  text-align: center;
+}
+
+.resume-wrapper {
+  width: 100%;
+  max-width: 800px;
+  height: 80vh;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background: white;
+}
+
+.resume-pdf {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transform: none !important;
+  transform-origin: unset !important;
+}
+
+@media (max-width: 768px) {
+  .resume-wrapper {
+    max-width: 90vw;
+    height: 80vh;
+  }
+}
+.gameboy-footer {
+  width: 100%;
+  max-width: 900px;
+  padding: 0.8rem 1rem;
+  background: var(--agridulce);
+  border-radius: 12px;
+  margin-top: 1.5vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.footer-icons a {
+  color: var(--platino);
+  transition: transform 0.2s, color 0.3s;
+}
+
+.footer-icons a:hover {
+  transform: scale(1.2);
+  color: var(--champan);
+}
+
+/* Botón de modo claro/oscuro */
+.theme-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 999;
+  padding: 0.5rem 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  background: var(--espacio);
+  color: var(--platino);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px var(--platino);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--agridulce);
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Modo oscuro - sobreescribe variables */
+body.dark-mode {
+  --azul: #1e3a5f;
+  --platino: #f1f5f9;
+  --espacio: #0f172a;
+  --agridulce: #7f1d1d;
+  --champan: #1a1a1a;
+
+  background-color: var(--champan);
+  color: var(--platino);
 }
